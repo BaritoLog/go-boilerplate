@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/imantung/go-boilerplate/testkit"
+	"github.com/BaritoLog/go-boilerplate/testkit"
 )
 
 func TestErrors(t *testing.T) {

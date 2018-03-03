@@ -3,8 +3,8 @@ package httpkit
 import (
 	"testing"
 
-	"github.com/imantung/go-boilerplate/errkit"
-	"github.com/imantung/go-boilerplate/testkit"
+	"github.com/BaritoLog/go-boilerplate/errkit"
+	"github.com/BaritoLog/go-boilerplate/testkit"
 )
 
 func TestDummyServer(t *testing.T) {

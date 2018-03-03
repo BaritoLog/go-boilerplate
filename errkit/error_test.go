@@ -3,7 +3,7 @@ package errkit
 import (
 	"testing"
 
-	"github.com/imantung/go-boilerplate/testkit"
+	"github.com/BaritoLog/go-boilerplate/testkit"
 )
 
 func TestError(t *testing.T) {

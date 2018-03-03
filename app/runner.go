@@ -1,8 +1,6 @@
 package app
 
-import (
-	"github.com/imantung/go-boilerplate/errkit"
-)
+import "github.com/BaritoLog/go-boilerplate/errkit"
 
 const (
 	ErrConfigRetrieve = errkit.Error("Config Retrive failed")
