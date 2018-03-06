@@ -45,6 +45,6 @@ func fatal(t *testing.T, message string, funcLevel int) {
 		message = fmt.Sprintf("%s:%d: %s", simpleFileName, no, message)
 	}
 
-	fmt.Printf("\t%s\n", message)
+	t.Logf("%s\n", message)
 	t.FailNow()
 }
