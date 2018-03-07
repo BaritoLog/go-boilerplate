@@ -1,7 +1,12 @@
 package execkit
 
+import (
+	"fmt"
+	"io"
+)
+
 // Run and print the output
-func Print(printer Printer, cmds ...Cmd) (err error) {
+func Print(w io.Writer, cmds ...Cmd) (err error) {
 	for _, cmd := range cmds {
 		var out []byte
 		out, err = cmd.Output()
@@ -9,7 +14,7 @@ func Print(printer Printer, cmds ...Cmd) (err error) {
 			return
 		}
 
-		printer.Print(string(out))
+		fmt.Fprintln(w, string(out))
 	}
 
 	return

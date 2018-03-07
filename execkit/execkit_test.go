@@ -1,6 +1,7 @@
 package execkit
 
 import (
+	"bytes"
 	"testing"
 
 	"github.com/BaritoLog/go-boilerplate/errkit"
@@ -8,30 +9,38 @@ import (
 )
 
 func TestPrint(t *testing.T) {
-	printer := &DummyPrinter{}
+	var buf bytes.Buffer
+
 	cmds := []Cmd{
 		DummyCmd{OutputBytes: []byte("hello")},
 		DummyCmd{OutputBytes: []byte("world")},
 	}
 
-	err := Print(printer, cmds...)
+	err := Print(&buf, cmds...)
+
+	want := `hello
+world
+`
 
 	FatalIfError(t, err)
-	FatalIf(t, len(printer.Lines) != 2, "output lines should be 2")
-	FatalIf(t, printer.Lines[0] != "hello", "first output should be \"hello\"")
-	FatalIf(t, printer.Lines[1] != "world", "second output should be \"hello\"")
+	FatalIf(t, buf.String() != want, "print wrong value")
+
 }
 
 func TestPrint_Error(t *testing.T) {
-	printer := &DummyPrinter{}
+	var buf bytes.Buffer
+
 	cmds := []Cmd{
 		DummyCmd{OutputBytes: []byte("hello")},
 		DummyCmd{OutputError: errkit.Error("some error")},
 		DummyCmd{OutputBytes: []byte("world")},
 	}
 
-	err := Print(printer, cmds...)
+	err := Print(&buf, cmds...)
+
+	want := `hello
+`
 
 	FatalIfWrongError(t, err, "some error")
-	FatalIf(t, len(printer.Lines) != 1, "output lines should be 1")
+	FatalIf(t, buf.String() != want, "print wrong value")
 }
