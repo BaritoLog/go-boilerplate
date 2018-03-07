@@ -15,6 +15,10 @@ func FatalIfError(t *testing.T, err error) {
 }
 
 func FatalIfWrongError(t *testing.T, err error, message string) {
+	if err == nil {
+		fatal(t, "no expected error", 1)
+	}
+
 	if err.Error() != message {
 		fatal(
 			t,
