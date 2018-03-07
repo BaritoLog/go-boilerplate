@@ -19,25 +19,16 @@ func FatalIfWrongError(t *testing.T, err error, message string) {
 		fatal(t, "no expected error", 1)
 	}
 
-	if err.Error() != message {
-		fatal(
-			t,
-			fmt.Sprintf("Wrong error message: %s", err.Error()),
-			1,
-		)
-	}
+	FatalIf(t, err.Error() != message, "Wrong error message: %s", err.Error())
 }
 
 func FatalIfWrongHttpCode(t *testing.T, rec *httptest.ResponseRecorder, code int) {
-	FatalIf(
-		t,
-		rec.Code != code,
-		fmt.Sprintf("wrong http code: %s", rec.Code),
-	)
+	FatalIf(t, rec.Code != code, "wrong http code: %s", rec.Code)
 }
 
-func FatalIf(t *testing.T, condition bool, message string) {
+func FatalIf(t *testing.T, condition bool, format string, v ...interface{}) {
 	if condition {
+		message := fmt.Sprintf(format, v...)
 		fatal(t, message, 1)
 	}
 }
