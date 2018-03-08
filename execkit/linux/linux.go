@@ -13,3 +13,7 @@ func Tar(path, option, directory string) *exec.Cmd {
 func Remove(file string) *exec.Cmd {
 	return exec.Command("rm", file)
 }
+
+func Bash(command string) *exec.Cmd {
+	return exec.Command("sh", "-c", command)
+}
