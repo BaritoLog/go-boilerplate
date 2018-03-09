@@ -74,9 +74,7 @@ func TestRun_GetError(t *testing.T) {
 		FatalIfWrongError(t, err, "exit status 127: sh: bad_command: command not found\n\n")
 
 		get := cmdWriter.String()
-		want := `> sh -c echo stdout; echo 1>&2 stderr
-> sh -c bad_command
-`
+		want := "> sh -c echo stdout; echo 1>&2 stderr\n\n> sh -c bad_command\n\n"
 		FatalIf(t, get != want, "command writer get wrong: %s", get)
 	}
 }
@@ -90,8 +88,16 @@ func TestRun(t *testing.T) {
 		FatalIfError(t, err)
 
 		get := cmdWriter.String()
-		want := `> sh -c echo stdout; echo 1>&2 stderr
-`
+		want := "> sh -c echo stdout; echo 1>&2 stderr\n\n"
 		FatalIf(t, get != want, "command writer get wrong: %s", get)
+	}
+}
+
+func TestPid(t *testing.T) {
+	if runtime.GOOS == "linux" || runtime.GOOS == "darwin" {
+
+		pid, err := Pid("system")
+		FatalIfError(t, err)
+		FatalIf(t, len(pid) < 1, "pid is empty")
 	}
 }
