@@ -29,7 +29,7 @@ func FatalIfWrongError(t *testing.T, err error, message string) {
 }
 
 func FatalIfWrongHttpCode(t *testing.T, rec *httptest.ResponseRecorder, code int) {
-	FatalIf(t, rec.Code != code, "wrong http code: %s", rec.Code)
+	FatalIf(t, rec.Code != code, "wrong http code: %d", rec.Code)
 }
 
 func FatalIf(t *testing.T, condition bool, format string, v ...interface{}) {
