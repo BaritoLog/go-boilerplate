@@ -10,5 +10,13 @@ func NewHttpTestServer(statusCode int, body []byte) *httptest.Server {
 		w.WriteHeader(statusCode)
 		w.Write(body)
 	}))
+}
+
+func HttpRecord(handler func(http.ResponseWriter, *http.Request), req *http.Request) (rr *httptest.ResponseRecorder) {
+	rr = httptest.NewRecorder()
+
+	http.HandlerFunc(handler).ServeHTTP(rr, req)
+
+	return
 
 }
