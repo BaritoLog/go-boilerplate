@@ -10,20 +10,22 @@ var (
 	patch *monkey.PatchGuard
 )
 
-func Freeze(sometime string) (err error) {
+func Freeze(t time.Time) {
+	patch = monkey.Patch(
+		time.Now,
+		func() time.Time {
+			return t
+		},
+	)
+}
 
-	d, err := time.Parse(time.RFC3339, sometime)
+func FreezeUTC(s string) (err error) {
+	t, err := time.Parse(time.RFC3339, s)
 	if err != nil {
 		return
 	}
 
-	patch = monkey.Patch(
-		time.Now,
-		func() time.Time {
-			return d
-		},
-	)
-
+	Freeze(t)
 	return
 }
 
