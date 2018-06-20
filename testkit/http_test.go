@@ -9,7 +9,7 @@ import (
 
 func TestHttpServer(t *testing.T) {
 
-	ts := HttpTestServer(http.StatusTeapot, []byte("some-result"))
+	ts := NewTestServer(http.StatusTeapot, []byte("some-result"))
 
 	res, err := http.Get(ts.URL)
 	FatalIfError(t, err)
@@ -30,7 +30,7 @@ func TestRecord(t *testing.T) {
 		rw.Write([]byte("hello mama"))
 	}
 
-	rr := Record(handler, req)
+	rr := RecordResponse(handler, req)
 	b, _ := ioutil.ReadAll(got.Body)
 
 	FatalIf(t, rr.Code != http.StatusTeapot, "wrong rr.Code")
