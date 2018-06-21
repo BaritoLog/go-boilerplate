@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/consul/api"
 )
 
-func ConsulListServiceTestServer(services []*api.CatalogService) *httptest.Server {
+func NewConsulCatalogTestServer(services []*api.CatalogService) *httptest.Server {
 	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		body, _ := json.Marshal(services)
 		w.WriteHeader(http.StatusOK)

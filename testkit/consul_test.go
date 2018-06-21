@@ -13,7 +13,7 @@ func TestConsulListServiceServer(t *testing.T) {
 		&api.CatalogService{ID: "ID02"},
 	}
 
-	ts := ConsulListServiceTestServer(expect)
+	ts := NewConsulCatalogTestServer(expect)
 
 	consulClient, _ := api.NewClient(&api.Config{
 		Address: ts.URL,
