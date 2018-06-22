@@ -16,7 +16,7 @@ func TestPathParameter(t *testing.T) {
 	}
 
 	for _, tt := range testcases {
-		get := PathParameterFromRawURL(tt.rawURL, tt.key)
+		get := PathParameterOfRawURL(tt.rawURL, tt.key)
 		if get != tt.expected {
 			t.Fatalf("get '%s' instead of '%s'", get, tt.expected)
 		}
@@ -36,7 +36,7 @@ func TestHost(t *testing.T) {
 	}
 
 	for _, tt := range testcases {
-		host, port := HostFromRawURL(tt.rawURL)
+		host, port := HostOfRawURL(tt.rawURL)
 		if host != tt.host {
 			t.Fatalf("wrong host: get '%s' instead of '%s'", host, tt.host)
 		}

@@ -9,7 +9,7 @@ import (
 type RawUrl string
 
 // PathParameter
-func PathParameterFromRawURL(rawUrl, key string) string {
+func PathParameterOfRawURL(rawUrl, key string) string {
 	i := strings.Index(rawUrl, key+"/")
 	if i < 0 {
 		return ""
@@ -23,7 +23,7 @@ func PathParameterFromRawURL(rawUrl, key string) string {
 	return s[:j]
 }
 
-func HostFromRawURL(rawUrl string) (host string, port int) {
+func HostOfRawURL(rawUrl string) (host string, port int) {
 	u, _ := url.Parse(rawUrl)
 
 	host = u.Host
