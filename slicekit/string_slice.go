@@ -1,5 +1,5 @@
 /* Collection of helper for slice of string */
-package strslice
+package slicekit
 
 func StringSliceContain(slice []string, s string) bool {
 	for _, item := range slice {

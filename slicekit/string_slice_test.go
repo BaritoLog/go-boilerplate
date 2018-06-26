@@ -1,4 +1,4 @@
-package strslice
+package slicekit
 
 import "testing"
 
