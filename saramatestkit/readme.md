@@ -38,7 +38,8 @@ func MyFunction() {
 func MyFunction(){
   var topic string
 
-  // mocks.NewSyncProducer() is good, but sometime not enough. Using saramatestkit.NewSyncProducer() instead
+  // mocks.NewSyncProducer() is good but sometimes is not enough.
+  // saramatestkit.NewSyncProducer() is a alternative for producer mock
   dummy := saramatestkit.NewSyncProducer()
   dummy.SendMessageFunc = func(msg *sarama.ProducerMessage) (partition int32, offset int64, err error) {
   	topic = msg.Topic
