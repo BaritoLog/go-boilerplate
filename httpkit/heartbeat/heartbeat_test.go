@@ -14,7 +14,7 @@ func TestHandler(t *testing.T) {
 	rec := httptest.NewRecorder()
 
 	http.HandlerFunc(Handler).ServeHTTP(rec, req)
-	FatalIfWrongHttpCode(t, rec, http.StatusOK)
+	FatalIfWrongResponseStatus(t, rec.Result(), http.StatusOK)
 
 	var message HeartbeatMessage
 	json.Unmarshal(rec.Body.Bytes(), &message)

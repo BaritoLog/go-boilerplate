@@ -53,7 +53,7 @@ func TestPrint_GetError(t *testing.T) {
 		get = stdOutErr.String()
 		want = `stdout
 stderr
-sh: bad_command: command not found
+sh: line 1: bad_command: command not found
 `
 		FatalIf(t, get != want, "standar output/error writer got wrong: %s", get)
 
@@ -71,7 +71,7 @@ func TestRun_GetError(t *testing.T) {
 			linux.Bash("echo na"),
 		)
 
-		FatalIfWrongError(t, err, "exit status 127: sh: bad_command: command not found\n\n")
+		FatalIfWrongError(t, err, "exit status 127: sh: line 1: bad_command: command not found\n\n")
 
 		get := cmdWriter.String()
 		want := "> sh -c echo stdout; echo 1>&2 stderr\n\n> sh -c bad_command\n\n"

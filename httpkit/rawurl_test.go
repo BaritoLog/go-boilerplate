@@ -31,7 +31,7 @@ func TestHost(t *testing.T) {
 	}{
 		{"http://localhost:8088", "localhost", 8088},
 		{"wrong-url", "", 0},
-		{"http://other-host:wrong", "other-host", 0},
+		{"http://other-host:80", "other-host", 80},
 		{"http://more-host", "more-host", 0},
 	}
 
